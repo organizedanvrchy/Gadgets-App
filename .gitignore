@@ -34,3 +34,12 @@ yarn-error.*
 
 # typescript
 *.tsbuildinfo
+
+# IDEs
+.vscode/
+.idea/
+
+
+tsconfig.json
+
+
