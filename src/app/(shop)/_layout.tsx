@@ -15,12 +15,6 @@ function TabBarIcon(props: {
   );
 }
 
-const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-  },
-});
-
 const TabsLayout = () => {
   return (
     <SafeAreaView
@@ -72,5 +66,11 @@ const TabsLayout = () => {
     </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+  },
+});
 
 export default TabsLayout;
