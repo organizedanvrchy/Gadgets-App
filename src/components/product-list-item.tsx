@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
   },
   itemTextContainer: {
     padding: 8,
-    alignItems: 'flex-start',
+    alignItems: 'center',
     gap: 4,
   },
   itemTitle: {

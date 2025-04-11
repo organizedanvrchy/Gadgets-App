@@ -25,11 +25,17 @@ const TabsLayout = () => {
         screenOptions={{
           tabBarActiveTintColor: "#1BC464",
           tabBarInactiveTintColor: 'gray',
-          tabBarLabelStyle: { fontSize: 16 },
+          tabBarLabelStyle: { fontSize: 14 },
+          tabBarLabelPosition: 'below-icon',
+          tabBarItemStyle: { 
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+          },
           tabBarStyle: {
             borderTopLeftRadius: 20,
             borderTopRightRadius: 20,
-            paddingTop: 10,
+            height: 55,
           },
           headerShown: false,
         }}
