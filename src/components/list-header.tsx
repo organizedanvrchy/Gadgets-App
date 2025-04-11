@@ -1,6 +1,7 @@
 import { Link } from 'expo-router';
 import { FlatList, Image, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { FontAwesome } from '@expo/vector-icons';
+
 import { CATEGORIES } from '../../assets/categories';
 import { useCartStore } from '../store/cart-store';
 
