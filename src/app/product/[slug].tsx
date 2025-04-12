@@ -8,7 +8,8 @@ import { useCartStore } from '../../store/cart-store';
 
 const ProductDetails = () => {
   const { slug } = useLocalSearchParams<{ slug: string }>();
-  const toast = useToast;
+  
+  const toast = useToast();
   
   const product = PRODUCTS.find(product => product.slug === slug);
   if (!product) return <Redirect href='/404' />;
@@ -21,11 +22,40 @@ const ProductDetails = () => {
 
   const [quantity, setQuantity] = useState(initialQuantity);
 
-  const increaseQuantity = () => {};
+  const increaseQuantity = () => {
+    if(quantity < product.maxQuantity) {
+      setQuantity(prev => prev + 1);
+      incrementItem(product.id);
+    } else {
+      toast.show("Cannot add more than maximum quantity", {
+        type: 'warning',
+        placement: 'top',
+        duration: 1500,
+      });
+    }
+  };
 
-  const decreaseQuantity = () => {};
+  const decreaseQuantity = () => {
+    if(quantity > 1) {
+      setQuantity(prev => prev - 1);
+      decrementItem(product.id);
+    }
+  };
 
-  const addToCart = () => {};
+  const addToCart = () => {
+    addItem({
+      id: product.id,
+      title: product.title,
+      image: product.heroImage,
+      price: product.price,
+      quantity,
+    });
+    toast.show("Added to cart", {
+      type: 'success',
+      placement: 'top',
+      duration: 1500,
+    })
+  };
 
   const totalPrice = (product.price * quantity).toFixed(2);
 
@@ -33,7 +63,7 @@ const ProductDetails = () => {
     <View style={ styles.container }>
       <Stack.Screen options={{ title: product.title }} />
         <Image 
-          source={ product.heroImage}
+          source={ product.heroImage }
           style={ styles.heroImage }
         />
 
@@ -51,7 +81,7 @@ const ProductDetails = () => {
               Unit Price: { product.price }
             </Text>
             <Text style={ styles.price }>
-              Total Price: ${totalPrice}
+              Total Price: ${ totalPrice }
             </Text>
           </View>
 
@@ -72,7 +102,9 @@ const ProductDetails = () => {
               onPress={ decreaseQuantity }
               disabled={ quantity <= 1 }
             >
-              <Text style={ styles.quantityButtonText}>-</Text>
+              <Text style={ styles.quantityButtonText }>
+                -
+              </Text>
             </TouchableOpacity>
             
             <Text style={ styles.quantity }>
@@ -82,8 +114,24 @@ const ProductDetails = () => {
             <TouchableOpacity
               style={ styles.quantityButton }
               onPress={ increaseQuantity }
+              disabled={ quantity >= product.maxQuantity }
             >
+              <Text style={ styles.quantityButtonText }>
+                +
+              </Text>
+            </TouchableOpacity>
 
+            <TouchableOpacity
+              style={[
+                styles.addToCartButton,
+                { opacity: quantity === 0 ? 0.5 : 1 }, 
+              ]}
+              onPress={ addToCart }
+              disabled={ quantity === 0 }
+            >
+              <Text style={ styles.addToCartText }>
+                Add to Cart
+              </Text>
             </TouchableOpacity>
           </View>
         </View>
