@@ -9,7 +9,7 @@ function TabBarIcon(props: {
 }) {
   return (
     <FontAwesome
-      size={ 24 } {...props}
+      size={ 24 } { ...props }
       style={{ color: "#1BC464" }}
     />
   );
@@ -47,7 +47,7 @@ const TabsLayout = () => {
             tabBarIcon(props) {
               return (
                 <TabBarIcon
-                  {...props}
+                  { ...props }
                   name="shopping-cart"
                 />
               );
@@ -61,7 +61,7 @@ const TabsLayout = () => {
             tabBarIcon(props) {
               return (
                 <TabBarIcon
-                  {...props}
+                  { ...props }
                   name="book"
                 />
               );

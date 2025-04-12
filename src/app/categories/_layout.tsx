@@ -13,7 +13,7 @@ export default function CategoriesLayout() {
             <TouchableOpacity onPress={() => navigation.goBack()}>
               <Ionicons
                 name="arrow-back"
-                size={24}
+                size={ 24 }
                 color="black"
               />
             </TouchableOpacity>
